@@ -1,0 +1,239 @@
+DL1
+-imported this:
+NumPy → Handles data
+StandardScaler → Scales data
+Keras → Builds neural network
+Sequential → Creates model
+Dense → Adds neurons/layers
+RMSprop → Trains model efficiently-----
+
+-Code Part	Purpose
+load_data()	Loads dataset
+X_train	Training inputs
+Y_train	Training outputs
+X_test	Testing inputs
+Y_test	Testing outputs
+shape	Shows data dimensions----
+
+-StandardScaler()	Create scaler       ( fast training, better accuracy)
+fit_transform()		Learn + scale training data
+transform()		Scale test data using same rules
+
+Training Data:
+    fit + transform
+Testing Data:
+    only transform (If we use fit again:
+                          new mean/std values are created)------
+
+- seaborn	Statistical visualization built on matplot
+matplotlib	Plot customization, add labels,titles
+histplot()	Creates histogram
+kde=True	Adds smooth density curve
+show()		Displays graph----
+
+
+-sns.boxplot()	Creates boxplot
+Y_train	House price data
+
+ Box Plot Short Terms
+Term	Meaning
+Minimum	Smallest value
+Maximum	Largest value
+Median	Middle value
+Q1 (First Quartile)	25% data below
+Q3 (Third Quartile)	75% data below
+IQR	Interquartile Range = Q3 − Q1
+Whiskers	Lines showing data spread
+Outliers	Unusual/extreme values-----
+
+-Code			Meaning
+import pandas as pd	Import pandas library
+pd.DataFrame()	    Convert data into table
+df	          Stores tabular data--
+
+-Code		Purpose
+df.columns	Access column names
+=		Assign new names--
+
+-df		DataFrame
+['PRICE']	New column name
+Y_train		House prices/output
+
+df.corr()	Calculates correlations
+correlation	Stores matrix
+Positive value	Variables increase together
+Negative value	One increases, other decreases
+0	No relationship
+
+correlation	Correlation matrix
+['PRICE']	Select PRICE column
+Output	Correlation of all features with price---
+
+-plt.subplots()	Create figure
+figsize		Set graph size
+sns.heatmap()	Create heatmap-a color-based data visualization to display correlation strength
+correlation	Correlation matrix
+square=True	Square cells
+annot=True	Show values inside cells---
+
+-scatter plot shows:relationship between two variables.-
+figure()		Create graph window
+features	List of selected features
+for loop		Draw multiple plots
+subplot()	Multiple graphs in one row (row,col,position)
+scatter()	Create scatter plot--
+
+-Sequential()	Create neural network
+Dense()	Add layers/neuron
+relu	Activation function
+Dense(1)	Output layer
+summary()	Show architecture
+compile()	Configure training
+mse	Error calculation
+rmsprop	Optimizer
+fit()	Train model
+epochs	Number of training cycles--
+
+-predict()	Predict outputs
+evaluate()	Calculate model performance
+mse_nn		Mean Squared Error
+mae_nn		Mean Absolute Error
+print()		Display errors
+y_pred		Predicted house prices---
+
+-predict()	Predict outputs
+for loop	Show multiple results
+predictions[i][0]	Predicted value
+Y_test[i]	Actual value
+:.2f	2 decimal formatting
+
+
+
+
+
+
+
+DL2
+-Import		Purpose
+TensorFlow	Deep learning framework
+imdb		Movie review dataset
+Sequential	Neural network model
+Dense		Fully connected layer
+Embedding	Convert words to vectors
+Flatten		Convert output to 1D
+pad_sequences	Make all reviews equal length---
+
+-Code	Purpose
+vocab_size = 10000	Limit vocabulary
+imdb.load_data()	Load IMDB dataset
+num_words=vocab_size	Use top frequent words
+X_train	Training reviews
+y_train	Training labels
+X_test	Testing reviews
+y_test	Testing labels---
+
+-max_length = 200	Set review length
+pad_sequences()	Equalize sequence size---
+
+-Layer		Purpose
+Embedding	Convert words to vectors
+Flatten		Convert multi-dimensional data to 1D
+Dense(64)	Learn text patterns
+Dense(32)	Learn deeper features
+Dense(1)	Binary output
+Sigmoid		Probability prediction (>0.5- positive else negative---
+
+-Parameter	Purpose
+optimizer='adam'	Update weights efficiently
+loss='binary_crossentropy'	Binary classification loss
+metrics=['accuracy']	Measure prediction accuracy
+compile()	Configure model before training---
+
+-Parameter	Purpose
+fit()	Train model
+X_train	Input reviews
+y_train	Sentiment labels
+epochs=10	Number of training cycles
+batch_size=128	Reviews processed together
+validation_split=0.2	20% data used for validation
+history	Stores training results---
+
+-predict()		Predict sentiments
+predictions[i][0]	Predicted probability
+y_test[i]	Actual label
+:.2f		2 decimal formatting
+for loop	Display multiple predictions---
+
+-Function	Purpose
+plot()	Draw graph
+loss	Training error
+val_loss	Validation error---
+
+
+
+
+
+
+
+
+
+
+DL3
+-numpy		Images are stored as:numerical pixel arrays.
+fashion_mnist	Dataset loading
+Sequential	Build CNN
+Conv2D	Feature extraction
+MaxPooling2D	Reduce image size
+Dense	Classification layer
+Flatten	Convert 2D → 1D
+Dropout	Prevent overfitting
+to_categorical	One-hot encoding------
+
+-trainX	 Training images
+trainY	Training labels
+testX	Testing images
+testY	Testing labels
+shape   Shows dataset dimensions (60000, 28, 28) -60,000 training images, each image size = 28×28 pixels---
+
+-reshape (samples, height, width, color channels)----
+
+-astype('float32')	Convert integers to decimal values
+/255.0		Normalize pixel values
+Final range	0 to 1
+Benefit		Faster and better CNN training---
+
+-to_categorical()	Convert labels into categorical vectors
+Integer label	Single class number
+One-hot encoding	Binary class vector---
+
+-Layer	Purpose
+Conv2D	Extract image features
+MaxPooling2D	Reduce feature size
+Flatten	Convert 2D → 1D
+Dense	Learn patterns
+Dropout	Prevent overfitting
+Softmax	Output class probabilities between 0 and 1 and all sums exactly 1---
+
+-Parameter	Purpose
+optimizer='adam'	Updates weights efficiently
+loss='categorical_crossentropy'	Calculates classification error
+metrics=['accuracy']	Measures prediction accuracy
+compile()	Configures model before training---
+
+-fit()		Train model
+trainX		Training images
+trainY		Training labels
+validation_data	Test dataset for validation
+history		Stores training results---
+
+-to show the dataset: 
+for i in range(9):
+
+    plt.subplot(3,3,i+1)
+
+    plt.imshow(trainX[i].reshape(28,28), cmap='gray')
+
+    plt.axis('off')
+
+plt.show()
+
